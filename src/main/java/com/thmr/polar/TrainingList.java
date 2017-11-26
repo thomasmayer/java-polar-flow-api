@@ -1,7 +1,10 @@
 package com.thmr.polar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 /**  
@@ -46,7 +49,6 @@ public class TrainingList
 		
 		for(Training t : trainings)
 		{
-			//if(Arrays.asList(sportIds).contains(t.getSportId()))
 			if(Util.contains(sportIds, t.getSportId()))
 			{
 				overallDistance += t.getDistance();
@@ -94,5 +96,24 @@ public class TrainingList
 			    TimeUnit.MILLISECONDS.toSeconds(overallDuration) % TimeUnit.MINUTES.toSeconds(1));
 		
 		return hms;
+	}
+	
+	/**
+	 * Returns the sports types present in the current training list
+	 * @return
+	 */
+	public List<Integer> getSportsIds()
+	{
+		List<Integer> sportsIds = new ArrayList<Integer>();
+		
+		for(Training t : trainings)
+		{
+			if(!sportsIds.contains(t.getSportId()))
+			{
+				sportsIds.add(t.getSportId());
+			}
+		}
+		
+		return sportsIds;
 	}
 }

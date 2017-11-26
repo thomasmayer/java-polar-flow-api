@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 */ 
 public class Training
 {
-	private long id;
+	private Long id;
 	private long duration;
 	private String swimDistance;
 	private String trainingLoadHtml;
@@ -25,7 +25,7 @@ public class Training
 	private int hrAvg;
 	private String note;
 	private String sportName;
-	private int sportId;
+	private Integer sportId;
 	private String startDate;
 	private long recoveryTime;
 	private String iconUrl;
@@ -35,8 +35,8 @@ public class Training
 		super();
 	}
 
-	public Training(long id, long duration, double distance, int calories, int hrAvg, String note, String sportName,
-			int sportId, String startDate, long recoveryTime, String iconUrl)
+	public Training(Long id, long duration, double distance, int calories, int hrAvg, String note, String sportName,
+			Integer sportId, String startDate, long recoveryTime, String iconUrl)
 	{
 		super();
 		this.id = id;
@@ -52,12 +52,12 @@ public class Training
 		this.iconUrl = iconUrl;
 	}
 
-	public long getId()
+	public Long getId()
 	{
 		return id;
 	}
 
-	public void setId(long id)
+	public void setId(Long id)
 	{
 		this.id = id;
 	}
@@ -141,12 +141,12 @@ public class Training
 		this.sportName = sportName;
 	}
 
-	public int getSportId()
+	public Integer getSportId()
 	{
 		return sportId;
 	}
 
-	public void setSportId(int sportId)
+	public void setSportId(Integer sportId)
 	{
 		this.sportId = sportId;
 	}
@@ -155,6 +155,24 @@ public class Training
 	{
 		return startDate;
 	}
+	
+	public Date getStartDateAsDate()
+	{
+		Date d = new Date();
+		
+		try
+		{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+			d = sdf.parse(getStartDate());
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return d;
+	}
+	
 
 	public void setStartDate(String startDate)
 	{

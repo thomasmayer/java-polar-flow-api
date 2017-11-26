@@ -3,6 +3,7 @@ package com.thmr.polar.test;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.List;
 
 import com.thmr.polar.Config;
 import com.thmr.polar.PolarFlowAPI;
@@ -42,11 +43,15 @@ public class SimpleSample
 		
 		TrainingList trainingList = polarFlowAPI.getTrainingData(fromDate.getTime(), toDate.getTime(), sportIds);
 		int count = 0;
+		List presentSportIds = trainingList.getSportsIds();
+		
+		System.out.println("present sport ids: " + presentSportIds);
 		
 		for (Training training : trainingList.getTrainings())
 		{
 			
 			System.out.println("no: " + count++ + ", " +
+					"id: " + training.getId() + ", " + 
 					"sportName: " + training.getSportName() + ", " +
 					"sportId: " + training.getSportId() + ", " +
 					"distance: " + training.getDistance() + ", " +

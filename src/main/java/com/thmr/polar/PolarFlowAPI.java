@@ -2,6 +2,7 @@ package com.thmr.polar;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -159,6 +160,54 @@ public class PolarFlowAPI
 		return trainingList;
 	}
 	
+	/**
+	 * for mocking and testing purpose
+	 * 
+	 * @param json
+	 * @return
+	 */
+	public TrainingList getTrainingData(String json)
+	{
+		TrainingList trainingList = new TrainingList();
+		
+		try
+		{
+			ObjectMapper mapper1 = new ObjectMapper();
+			trainingList
+					.setTrainings(Arrays.asList(mapper1.readValue(json, Training[].class)));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return trainingList;
+	}
+	
+	/**
+	 * for mocking and testing purpose
+	 * 
+	 * @param json
+	 * @return
+	 */
+	public TrainingList getTrainingData(InputStream is)
+	{
+		TrainingList trainingList = new TrainingList();
+		
+		try
+		{
+			ObjectMapper mapper1 = new ObjectMapper();
+			trainingList
+					.setTrainings(Arrays.asList(mapper1.readValue(is, Training[].class)));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return trainingList;
+	}
+
 	public boolean downloadCSV(Training t, OutputStream os, boolean decompress)
 	{
 		return downloadFile(Config.CSV_URL + "/" + t.getId(), os, decompress);
